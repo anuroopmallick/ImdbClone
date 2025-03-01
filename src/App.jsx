@@ -15,7 +15,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/wishlist" element={<Watchlist />} />
+        <Route path="/watchlist" element={<Watchlist />} />
       </Routes>
     </>
   );

@@ -15,8 +15,8 @@ const Navbar = () => {
       <Link to={"/"} className="mx-5 font-bold">
         Home
       </Link>
-      <Link to={"/wishlist"} className="mx-5 font-bold">
-        Wishlist
+      <Link to={"/watchlist"} className="mx-5 font-bold">
+        Watchlist
       </Link>
     </div>
   );

@@ -5,11 +5,17 @@ import Pagination from "./Pagination";
 
 const Home = () => {
   const [pageNo, setPageNo] = useState(1);
+  const [totalPages, setTotalPages] = useState(null);
+
   return (
     <div>
       <Baner />
-      <Movies pageNo={pageNo} />
-      <Pagination pageNo={pageNo} setpageNo={setPageNo} />
+      <Movies pageNo={pageNo} setTotalPages={setTotalPages} />
+      <Pagination
+        pageNo={pageNo}
+        setpageNo={setPageNo}
+        totalPages={totalPages}
+      />
     </div>
   );
 };
