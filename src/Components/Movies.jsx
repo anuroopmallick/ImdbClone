@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MovieCard from "./MovieCard";
+import { MovieContext } from "../Context/MovieContext";
 
 const Movies = ({ pageNo, setTotalPages }) => {
   const [movies, setMovies] = useState([]);
-  const [watchlist, setWatchlist] = useState([]);
+  const { setWatchlist, addToWatchlist, removeFromWatchlist } =
+    useContext(MovieContext);
 
   useEffect(() => {
     let watchList = JSON.parse(localStorage.getItem("watchlist")) || [];
@@ -44,18 +46,6 @@ const Movies = ({ pageNo, setTotalPages }) => {
       controller.abort();
     };
   }, [pageNo]);
-
-  function addToWatchlist(movie) {
-    let updatedWatchlist = [...watchlist, movie];
-    setWatchlist(updatedWatchlist);
-    localStorage.setItem("watchlist", JSON.stringify(updatedWatchlist));
-  }
-
-  function removeFromWatchlist(movie) {
-    let filteredMovies = watchlist.filter((mov) => mov.id != movie.id);
-    setWatchlist(filteredMovies);
-    localStorage.setItem("watchlist", JSON.stringify(filteredMovies));
-  }
 
   return (
     <div>

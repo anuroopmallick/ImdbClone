@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ArrowUp, ArrowDown } from "lucide-react";
 import genreids from "../utility";
+import { MovieContext } from "../Context/MovieContext";
+
+import { Trash2 } from "lucide-react";
 
 const Watchlist = () => {
-  const [watchlist, setWatchlist] = useState(null);
+  const { watchlist, setWatchlist, removeFromWatchlist } =
+    useContext(MovieContext);
   const [search, setSearch] = useState("");
   const [genreList, setGenreList] = useState([]);
   const [currGenre, setCurrgenre] = useState("All Genres");
@@ -12,16 +16,6 @@ const Watchlist = () => {
     let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
     setWatchlist(watchlist);
   }, []);
-
-  function handleAscending(watchlist) {
-    watchlist.sort((a, b) => a.popularity - b.popularity);
-    setWatchlist([...watchlist]);
-  }
-
-  function handleDescending(watchlist) {
-    watchlist.sort((a, b) => b.popularity - a.popularity);
-    setWatchlist([...watchlist]);
-  }
 
   function handleSearch(e) {
     setSearch(e.target.value);
@@ -86,7 +80,6 @@ const Watchlist = () => {
               </th>
 
               <th>Ratings</th>
-              <th>Genre</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -121,8 +114,8 @@ const Watchlist = () => {
                     <td>{movie.popularity.toFixed(2)}</td>
                     <td>{movie.vote_average.toFixed(2)}</td>
                     <td>
-                      <button onClick={() => {}}>
-                        <Trash2 />{" "}
+                      <button onClick={() => removeFromWatchlist(movie)}>
+                        <Trash2 />
                       </button>
                     </td>
                   </tr>
