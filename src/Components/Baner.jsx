@@ -24,9 +24,9 @@ const banner = () => {
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/w500/${banner})`,
         width: "100%",
-        height: "450px",
+        height: "550px",
       }}
-      className="my-10 bg-cover bg-center te text-left text-white"
+      className="my-10 bg-cover bg-top te text-left text-white"
     >
       <div className="m-auto text-2xl font-medium p-2">{title}</div>
     </div>
